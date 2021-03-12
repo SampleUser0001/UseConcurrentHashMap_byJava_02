@@ -59,9 +59,9 @@ public class App {
         // 並列処理終了。
         exec.shutdown();
         try {
-            if( !exec.awaitTermination(KEY_COUNT * SLEEP_TIME, TimeUnit.MILLISECONDS) ){
+            if( !exec.awaitTermination(60, TimeUnit.SECONDS) ){
               exec.shutdownNow();
-              if(!exec.awaitTermination(KEY_COUNT * SLEEP_TIME, TimeUnit.MILLISECONDS)){
+              if(!exec.awaitTermination(60, TimeUnit.SECONDS)){
                 System.err.println("cannot shutdown");
               }
             }
