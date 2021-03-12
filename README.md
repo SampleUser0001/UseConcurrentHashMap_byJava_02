@@ -36,3 +36,48 @@ Start.
 10000ミリ秒待機
 ```
 
+## 追加調査
+
+ConcurrentHashMapでputしながら、iteratorで取得するとどうなる？
+
+### 実行結果
+
+HashMapは落ちるので省略。
+
+ConcurrentHashMap
+
+```
+Start.
+100ミリ秒待機。
+---- init ----
+key:-1345654360,value:1896855897
+key:1664809038,value:1873632814
+key:209918395,value:-1641501656
+key:1772221883,value:1642436463
+key:-506740336,value:-1776172970
+key:530066020,value:-365661110
+key:-18943710,value:1700813522
+key:-1473634810,value:-803490822
+key:-312597936,value:1761575634
+key:256659362,value:1287644833
+--------
+---- read map ----
+ThreadID:15, key:-1345654360, value:1896855897
+ThreadID:15, key:1664809038, value:1873632814
+ThreadID:15, key:-1771164391, value:-1332654545
+ThreadID:15, key:209918395, value:-1641501656
+ThreadID:15, key:1772221883, value:1642436463
+ThreadID:15, key:-506740336, value:-1776172970
+ThreadID:15, key:-1473634810, value:-803490822
+ThreadID:15, key:-18943710, value:1700813522
+ThreadID:15, key:530066020, value:-365661110
+ThreadID:15, key:-614316994, value:861802877
+ThreadID:15, key:-1779817849, value:-687054975
+ThreadID:15, key:-312597936, value:1761575634
+cannot shutdown
+ThreadID:15, key:256659362, value:1287644833
+ThreadID:15, key:352211264, value:-959751030
+ThreadID:15, key:1137465011, value:216167451
+ThreadID:15, key:167750048, value:888084153
+--------
+```

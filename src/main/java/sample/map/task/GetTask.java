@@ -2,6 +2,7 @@ package sample.map.task;
 
 import java.util.Map;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 public class GetTask implements Runnable {
     private Map<Integer, Integer> map;
@@ -13,12 +14,19 @@ public class GetTask implements Runnable {
     @Override
     public void run(){
         // とりあえずkeyを読み込む
-        Iterator<Integer> keySet = map.keySet().iterator();
-        while(keySet.hasNext()){
-            keySet.next();
+        System.out.println("---- read map ----");
+        Iterator<Entry<Integer,Integer>> entrySet = map.entrySet().iterator();
+        do {
+            Entry<Integer,Integer> entry = entrySet.next();
+            System.out.printf(
+                "ThreadID:%d, key:%d, value:%d\n",
+                Thread.currentThread().getId(),
+                entry.getKey(),
+                entry.getValue());
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e){}
-        }
+        } while(entrySet.hasNext());
+        System.out.println("--------");
     }
 }

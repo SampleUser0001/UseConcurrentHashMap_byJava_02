@@ -19,7 +19,7 @@ import sample.map.task.PutTask;
  *
  */
 public class App {
-    public static final int KEY_COUNT = 1000;
+    public static final int KEY_COUNT = 10;
 
     public static final int SLEEP_TIME = 10;
 
@@ -45,6 +45,9 @@ public class App {
         for(int i=0;i<KEY_COUNT;i++) {
             map.put(random.nextInt(), random.nextInt());
         }
+        System.out.println("---- init ----");
+        map.forEach((k,v) -> {System.out.printf("key:%d,value:%d\n",k,v);});
+        System.out.println("--------");
 
         // 並行処理開始
         ExecutorService exec = Executors.newFixedThreadPool(THREAD_COUNT);
